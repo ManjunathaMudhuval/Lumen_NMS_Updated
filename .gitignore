@@ -1,0 +1,5 @@
+backend/data/device_credentials.json
+backend/.uvicorn.pid
+**/__pycache__/
+*.pyc
+.venv/

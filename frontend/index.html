@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMS App Shell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="theme-light">
+  <div class="app-bg" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary Navigation">
+      <div class="brand-wrap">
+        <div class="brand-mark">NV</div>
+        <div>
+          <p class="brand-title">NetVista NMS</p>
+          <p class="brand-subtitle">Operations Core</p>
+        </div>
+      </div>
+
+      <nav class="nav-list" aria-label="Main Sections">
+        <button class="nav-item active" type="button" data-view="dashboard">Dashboard</button>
+        <button class="nav-item" type="button" data-view="inventory">Inventory</button>
+        <button class="nav-item" type="button" data-view="detail">Device Details</button>
+        <button class="nav-item" type="button" data-view="config">Device Config</button>
+        <button class="nav-item" type="button" data-view="dashboard">Alarms</button>
+        <button class="nav-item" type="button" data-view="dashboard">Reports</button>
+        <button class="nav-item" type="button" data-view="dashboard">Settings</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p class="status-label">Shell Status</p>
+        <p class="status-value">Step 2 Placeholder Windows</p>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <h1 class="topbar-title">Network Management System</h1>
+          <p class="topbar-subtitle" id="view-subtitle">Phase 1 - Dashboard Placeholder</p>
+        </div>
+        <div class="topbar-actions">
+          <input id="global-device-search" class="form-input global-search" type="text" placeholder="Search for a device (Hostname / IP Address)..." aria-label="Global device search" />
+          <button id="global-refresh-btn" type="button" class="action-btn">Refresh</button>
+          <span id="header-last-updated" class="live-refresh-time" aria-live="polite">Last Updated: --</span>
+          <button type="button" class="action-btn">Admin</button>
+          <select id="theme-switcher" class="filter-select" aria-label="Select screen theme">
+            <option value="light">White Blue</option>
+            <option value="dark">Black White</option>
+          </select>
+          <button type="button" class="action-btn primary">Open Command</button>
+        </div>
+      </header>
+
+      <section class="content-stage" aria-live="polite">
+        <article class="stage-card view-panel is-active" id="view-dashboard" data-view-panel="dashboard">
+          <div class="dashboard-hero">
+            <div>
+              <h2>Executive/NOC Dashboard</h2>
+              <p class="dashboard-subtitle">Realtime operational snapshot across discovered infrastructure.</p>
+            </div>
+            <div class="chip-row">
+              <span class="chip">Mode: Operations</span>
+              <span class="chip">Window: Last Poll</span>
+            </div>
+          </div>
+
+          <div class="dashboard-kpi-grid" id="dashboard-kpi-grid">
+            <article class="dashboard-kpi-card">
+              <span>Total Devices</span>
+              <strong id="dash-total-devices">--</strong>
+            </article>
+            <article class="dashboard-kpi-card">
+              <span>Healthy</span>
+              <strong id="dash-healthy-devices">--</strong>
+            </article>
+            <article class="dashboard-kpi-card">
+              <span>Fetch Failed</span>
+              <strong id="dash-failed-devices">--</strong>
+            </article>
+            <article class="dashboard-kpi-card">
+              <span>Vendors</span>
+              <strong id="dash-vendor-count">--</strong>
+            </article>
+          </div>
+
+          <div class="dashboard-grid-2">
+            <section class="dashboard-panel">
+              <h3>Vendor Distribution</h3>
+              <div id="dash-vendor-bars" class="dashboard-vendor-bars"></div>
+            </section>
+            <section class="dashboard-panel">
+              <h3>Status Distribution</h3>
+              <div class="dashboard-status-stack" id="dash-status-stack"></div>
+            </section>
+          </div>
+
+          <div class="dashboard-grid-2">
+            <section class="dashboard-panel">
+              <h3>Recent Discovered Devices</h3>
+              <ul id="dash-recent-devices" class="dashboard-list"></ul>
+            </section>
+            <section class="dashboard-panel">
+              <h3>NOC Notes</h3>
+              <ul class="dashboard-list dashboard-list-static">
+                <li>Review devices marked Fetch Failed and confirm credentials.</li>
+                <li>Validate LLDP topology reachability for critical nodes.</li>
+                <li>Run refresh before shift handover export.</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+
+        <article class="stage-card view-panel" id="view-inventory" data-view-panel="inventory">
+          <h2>Device Inventory</h2>
+          <p>Purpose: display discovered devices and lifecycle metadata.</p>
+          <div class="chip-row">
+            <span class="chip">Data Source: Discovery + Inventory API (Phase 3)</span>
+            <span class="chip">Owner Phase: 1 to 3</span>
+          </div>
+          <div class="inventory-toolbar">
+            <label for="subnet-filter" class="filter-label">Subnet</label>
+            <select id="subnet-filter" class="filter-select" aria-label="Filter devices by subnet">
+              <option value="ALL">All Subnets</option>
+              <option value="66.162.110.0/24">66.162.110.0/24</option>
+            </select>
+
+            <label for="host-filter" class="filter-label">Host IP</label>
+            <select id="host-filter" class="filter-select" aria-label="Filter by host IP in selected subnet">
+              <option value="ALL">All IPs</option>
+            </select>
+
+            <label for="inventory-search" class="filter-label">Search</label>
+            <input id="inventory-search" class="form-input inventory-search" type="text" placeholder="Search hostname / mgmt IP" aria-label="Search inventory devices" />
+
+            <button id="add-ip-toggle" type="button" class="action-btn inventory-add-btn">Add IP</button>
+            <button id="fetch-live-ssh-btn" type="button" class="action-btn">Refresh Data</button>
+            <button id="delete-subnet-btn" type="button" class="action-btn danger-btn">Delete Selected Subnet IPs</button>
+            <span id="backend-status" class="backend-status unknown" aria-live="polite">Backend: Checking...</span>
+            <span id="live-refresh-summary" class="live-refresh-summary" aria-live="polite">Live: --</span>
+            <span id="live-refresh-time" class="live-refresh-time" aria-live="polite">Last refresh: --</span>
+            <p id="inventory-count" class="inventory-count">0 devices</p>
+          </div>
+
+          <form id="inventory-add-form" class="inventory-add-form" autocomplete="off">
+            <div class="form-grid">
+              <input id="add-subnet" class="form-input" value="66.162.110.0/24" required readonly />
+              <input id="add-host-start" class="form-input" type="number" min="1" max="254" placeholder="Host Start (1-254)" required />
+              <input id="add-host-end" class="form-input" type="number" min="1" max="254" placeholder="Host End (1-254)" required />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="action-btn primary">Save IP</button>
+              <button id="add-form-cancel" type="button" class="action-btn">Cancel</button>
+            </div>
+            <p id="inventory-feedback" class="inventory-feedback" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="table-wrap" role="region" aria-label="Inventory table" tabindex="0">
+            <table class="inventory-table">
+              <thead>
+                <tr>
+                  <th>Hostname</th>
+                  <th>Mgmt IP</th>
+                  <th>Vendor</th>
+                  <th>Model</th>
+                  <th>OS Version</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body"></tbody>
+            </table>
+          </div>
+          <p class="next-step">Next integration step: bind to inventory endpoint after required fields are finalized in Phase 2.</p>
+        </article>
+
+        <article class="stage-card view-panel" id="view-detail" data-view-panel="detail">
+          <h2 id="detail-device-title">Device Detail View</h2>
+          <p id="detail-device-subtitle">Select a hostname from Inventory to load details.</p>
+          <div class="chip-row">
+            <span class="chip">Data Source: Inventory API + Device Metadata</span>
+            <span class="chip">Owner Phase: 2 to 3</span>
+          </div>
+          <div class="inventory-toolbar">
+            <label for="detail-device-search" class="filter-label">Search Device</label>
+            <input id="detail-device-search" class="form-input inventory-search" type="text" placeholder="Type hostname / mgmt IP and press Enter" aria-label="Search device by hostname or IP" list="detail-device-options" />
+            <span id="detail-device-match" class="detail-device-match neutral" aria-live="polite">Live Match: --</span>
+            <datalist id="detail-device-options"></datalist>
+
+            <label for="detail-interface-search" class="filter-label">Search Interfaces</label>
+            <input id="detail-interface-search" class="form-input inventory-search" type="text" placeholder="Search port / description / vlan / mac" aria-label="Search device interfaces" />
+          </div>
+          <div id="detail-device-content" class="detail-device-content"></div>
+        </article>
+
+        <article class="stage-card view-panel" id="view-config" data-view-panel="config">
+          <h2 id="config-device-title">Device Configuration Dashboard</h2>
+          <p id="config-device-subtitle">Enterprise-grade configuration operations for selected device.</p>
+          <div class="chip-row">
+            <span class="chip">Config Lifecycle: View / Backup / Compare / Deploy</span>
+            <span class="chip">Security: Read-Only by default</span>
+          </div>
+
+          <div class="inventory-toolbar">
+            <label for="config-device-search" class="filter-label">Device</label>
+            <input id="config-device-search" class="form-input inventory-search" type="text" placeholder="Type hostname / mgmt IP and press Enter" aria-label="Search device for config view" list="detail-device-options" />
+            <button id="config-device-sync" type="button" class="action-btn">Use Selected Device</button>
+          </div>
+          <p id="config-device-feedback" class="config-device-feedback" role="status" aria-live="polite"></p>
+
+          <div id="config-device-content" class="config-device-content"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

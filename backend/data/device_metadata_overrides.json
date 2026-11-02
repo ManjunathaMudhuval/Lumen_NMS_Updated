@@ -1,0 +1,47 @@
+{
+  "66.162.110.1": {
+    "hostname": "edge-rt-01",
+    "vendor": "Juniper",
+    "model": "MX204",
+    "os_version": "Junos 22.4R3",
+    "serial_number": "JNPR-EDGE-0001",
+    "site": "DC-Primary",
+    "role": "Edge Router"
+  },
+  "66.162.110.2": {
+    "hostname": "edge-rt-02",
+    "vendor": "Cisco",
+    "model": "NCS-540",
+    "os_version": "IOS-XR 7.9.2",
+    "serial_number": "CSCO-EDGE-0002",
+    "site": "DC-Primary",
+    "role": "Edge Router"
+  },
+  "66.162.110.3": {
+    "hostname": "edge-rt-03",
+    "vendor": "Nokia",
+    "model": "7750 SR",
+    "os_version": "TiMOS-B-23.7.R1",
+    "serial_number": "NOK-EDGE-0003",
+    "site": "DC-Primary",
+    "role": "Edge Router"
+  },
+  "66.162.110.4": {
+    "hostname": "edge-rt-04",
+    "vendor": "Cisco",
+    "model": "ASR-920",
+    "os_version": "IOS-XE 17.9.4a",
+    "serial_number": "CSCO-EDGE-0004",
+    "site": "DC-Primary",
+    "role": "Aggregation"
+  },
+  "66.162.110.5": {
+    "hostname": "edge-rt-05",
+    "vendor": "Juniper",
+    "model": "ACX7100",
+    "os_version": "Junos 23.2R1",
+    "serial_number": "JNPR-EDGE-0005",
+    "site": "DC-Primary",
+    "role": "Access"
+  }
+}
