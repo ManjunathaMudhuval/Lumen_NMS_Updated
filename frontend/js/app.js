@@ -1241,7 +1241,8 @@
       const vendor = String(item.vendor || 'Unknown').trim() || 'Unknown';
       vendorMap.set(vendor, (vendorMap.get(vendor) || 0) + 1);
     });
-    dashVendorCount.textContent = String(vendorMap.size);
+    const identifiedVendorCount = Array.from(vendorMap.keys()).filter((vendor) => vendor !== 'Unknown').length;
+    dashVendorCount.textContent = String(identifiedVendorCount);
 
     if (dashVendorBars) {
       const vendorRows = Array.from(vendorMap.entries()).sort((a, b) => b[1] - a[1]).slice(0, 6);
@@ -1249,9 +1250,10 @@
       dashVendorBars.innerHTML = vendorRows.length
         ? vendorRows.map(([vendor, count]) => {
           const width = Math.max(8, Math.round((count / maxVendor) * 100));
+          const label = vendor === 'Unknown' ? 'Unidentified / No Vendor Data' : vendor;
           return `
             <div class="vendor-row">
-              <span class="vendor-name">${esc(vendor)}</span>
+              <span class="vendor-name">${esc(label)}</span>
               <div class="vendor-meter"><i style="width:${width}%"></i></div>
               <span class="vendor-count">${count}</span>
             </div>
@@ -1262,8 +1264,8 @@
 
     if (dashStatusStack) {
       const statusRows = [
-        { label: 'Discovered', value: discovered, className: 'ok' },
-        { label: 'Fetch Failed', value: failed, className: 'error' },
+        { label: 'Discovered (Active)', value: discovered, className: 'ok' },
+        { label: 'Free / No-Response IPs', value: failed, className: 'error' },
         { label: 'Pending', value: pending, className: 'pending' },
       ];
       const maxStatus = Math.max(...statusRows.map((row) => row.value), 1);
@@ -1325,7 +1327,6 @@
     const leftConfigText = leftMode === 'raw' ? rawConfig : hierarchicalConfig;
     const rightSourceText = rightMode === 'raw' ? rawConfig : hierarchicalConfig;
     const rightConfigText = buildInterfaceFilteredConfig(rightSourceText, configInterfaceSearchTerm);
-    const terminalPreview = (rawConfig || hierarchicalConfig || '').split('\n').slice(0, 10).join('\n');
     const backupRows = [
       { dt: '18 Oct 2024 10:00', type: 'Running Config', size: '45 KB' },
       { dt: '17 Oct 2024 10:00', type: 'Startup Config', size: '44 KB' },
@@ -1394,16 +1395,6 @@
         <div class="config-layout-2">
           <div class="config-card code-view config-code-panel">
             <div class="config-subtabs">
-              <button type="button" class="action-btn ${leftMode === 'hierarchical' ? 'primary' : ''}" data-config-current-view="hierarchical">Hierarchical</button>
-              <button type="button" class="action-btn ${leftMode === 'raw' ? 'primary' : ''}" data-config-current-view="raw">Raw</button>
-            </div>
-            <h4>Selected Configuration (${leftMode === 'raw' ? 'Raw' : 'Hierarchical'})</h4>
-            <div class="config-current-view" data-config-current-pane="hierarchical">
-              <pre>${esc(leftConfigText || `No ${leftMode} config loaded. Use View Config.`)}</pre>
-            </div>
-          </div>
-          <div class="config-card code-view config-code-panel">
-            <div class="config-subtabs">
               <button type="button" class="action-btn ${rightMode === 'hierarchical' ? 'primary' : ''}" data-config-filter-view="hierarchical">Hierarchical</button>
               <button type="button" class="action-btn ${rightMode === 'raw' ? 'primary' : ''}" data-config-filter-view="raw">Raw</button>
             </div>
@@ -1412,23 +1403,14 @@
               <pre>${esc(rightConfigText || 'No filtered output available.')}</pre>
             </div>
           </div>
-        </div>
-
-        <div class="config-lower-grid">
-          <div class="config-card terminal-card">
-            <h4>SSH Terminal</h4>
-            <p>Connect to device using SSH protocol</p>
-            <div class="terminal-form-row">
-              <div>
-                <label>Hostname / IP</label>
-                <input class="form-input" value="${esc(device.mgmtIp || '')}" />
-                <label>Username</label>
-                <input class="form-input" value="admin" />
-                <label>Password</label>
-                <input class="form-input" type="password" value="password" />
-                <button type="button" class="action-btn primary terminal-connect-btn">Connect</button>
-              </div>
-              <pre class="terminal-preview">${esc(terminalPreview || '$ session not initialized')}</pre>
+          <div class="config-card code-view config-code-panel">
+            <div class="config-subtabs">
+              <button type="button" class="action-btn ${leftMode === 'hierarchical' ? 'primary' : ''}" data-config-current-view="hierarchical">Hierarchical</button>
+              <button type="button" class="action-btn ${leftMode === 'raw' ? 'primary' : ''}" data-config-current-view="raw">Raw</button>
+            </div>
+            <h4>Selected Configuration (${leftMode === 'raw' ? 'Raw' : 'Hierarchical'})</h4>
+            <div class="config-current-view" data-config-current-pane="hierarchical">
+              <pre>${esc(leftConfigText || `No ${leftMode} config loaded. Use View Config.`)}</pre>
             </div>
           </div>
         </div>
@@ -1688,7 +1670,7 @@
 
       const discovered = inventorySeed.filter((item) => String(item.status || '') === 'Discovered').length;
       const failed = inventorySeed.filter((item) => String(item.status || '') === 'Fetch Failed').length;
-      setLiveRefreshMeta(`Live: ${discovered} ok / ${failed} failed`, `Last refresh: ${new Date().toLocaleTimeString()}`);
+      setLiveRefreshMeta(`Live: ${discovered} active / ${failed} free-or-no-response`, `Last refresh: ${new Date().toLocaleTimeString()}`);
       setFeedback('Data refreshed successfully.', 'success');
     } catch (error) {
       setBackendStatus('disconnected', 'API error');
@@ -2001,8 +1983,15 @@
         return;
       }
       if (target.getAttribute('data-config-interface-search') === 'true') {
-        configInterfaceSearchTerm = String(target.value || '').trim();
+        configInterfaceSearchTerm = String(target.value || '');
+        const caretPos = target.selectionStart;
         renderDeviceConfigView();
+        const restoredInput = configDeviceContent.querySelector('[data-config-interface-search="true"]');
+        if (restoredInput) {
+          restoredInput.focus();
+          const pos = Math.min(caretPos ?? restoredInput.value.length, restoredInput.value.length);
+          restoredInput.setSelectionRange(pos, pos);
+        }
       }
     });
   }

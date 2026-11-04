@@ -782,5 +782,237 @@
     "timestamp": "2026-10-28T14:05:20.501139Z",
     "action": "current_config_read_raw",
     "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "588f4fad-63eb-4d2e-b369-299ff9635686",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-02T13:28:28.828364Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "ee67d04c-4fd6-4c3a-8ae9-aa3d376cde5b",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-02T15:35:56.527576Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "120d01d5-cd93-4879-9c9e-70f56e26b99b",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-02T15:36:13.087022Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "77c69171-6b72-4da6-953a-22ecb61c9d9b",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-02T15:36:46.262495Z",
+    "action": "current_config_read_raw",
+    "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "fe741d7e-5c5d-4113-9b11-2ee3bdd93b59",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-03T11:41:14.885731Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "70857c6e-aee8-4a1b-9c85-0c23a00a560b",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-03T11:41:46.551755Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "f4747714-c436-4eba-a490-a30b6b520a70",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-03T11:42:36.271223Z",
+    "action": "current_config_read_raw",
+    "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "54aae6fc-8c93-4530-b877-e7eb781ba73c",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-03T11:42:48.849973Z",
+    "action": "current_config_read_raw",
+    "message": "Unable to collect running config over SSH/Telnet: [Errno 111] Connection refused"
+  },
+  {
+    "event_id": "88a37946-9ac3-44fd-ab8b-2cea15a82709",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-03T11:42:50.806076Z",
+    "action": "current_config_read_raw",
+    "message": "Unable to collect running config over SSH/Telnet: [Errno 111] Connection refused"
+  },
+  {
+    "event_id": "4f4ab8af-b678-45a0-9d26-6ad90fbad117",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-03T11:42:59.370275Z",
+    "action": "current_config_read_raw",
+    "message": "Unable to collect running config over SSH/Telnet: [Errno 111] Connection refused"
+  },
+  {
+    "event_id": "c2564d94-f2c6-4ff6-8e01-6b1c4f15d05f",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-03T11:42:59.558373Z",
+    "action": "current_config_read_raw",
+    "message": "Unable to collect running config over SSH/Telnet: [Errno 111] Connection refused"
+  },
+  {
+    "event_id": "8f501afd-eff6-4d65-a062-b8b31d2a0985",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:18:15.542864Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "004c878d-3e52-4bd5-8416-3da9b7518d73",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:18:45.195078Z",
+    "action": "current_config_read_raw",
+    "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "8fd9ca50-d816-44c5-a149-6af91b5b6cb6",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:19:01.435243Z",
+    "action": "current_config_read_raw",
+    "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "0c2ec0a4-7ed5-4cfe-8903-5bc916ad49d8",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:23:52.393551Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "3e724a83-a61c-4697-8dcd-2dfc9921c17c",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:24:09.636046Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "915ffc95-6b98-46d6-8135-2bebe9ecec3e",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T05:29:41.849078Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "314d39df-3ab6-4b7f-b59b-c574b975317e",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T05:30:32.345162Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "0eef4a28-8705-4b75-8be9-c7254f63be3d",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T05:33:09.559006Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "0806d2e0-7a8b-4ed5-9c5c-179d2d1557ea",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:51:57.034250Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "fc9ad544-1763-44ca-ac7f-9519877fbe64",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T05:52:12.563442Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "a50cf065-3ffd-4e17-82fa-465ee64f2502",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T05:52:28.145261Z",
+    "action": "current_config_read_raw",
+    "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "5a438362-d9a0-48ff-b9b2-a6813b1a18a8",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:53:48.894403Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "83292cef-ff91-40bf-8572-6df46e6f1d55",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T05:54:36.133543Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "6737351e-f4ae-4a2c-adca-b802961d3b8d",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T06:24:35.930423Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "40b7c2ec-2823-42cf-ae71-a84c7e199f2a",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T06:25:07.606017Z",
+    "action": "current_config_read_raw",
+    "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "2597a20a-24b9-41ad-bbe2-d9813887ce10",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T06:25:25.820121Z",
+    "action": "current_config_read_raw",
+    "message": "SSH raw config collected via Netmiko (juniper_junos) using 'show configuration | display set | no-more'."
+  },
+  {
+    "event_id": "9c144123-8a52-4cf8-af96-6f52e9af7439",
+    "mgmt_ip": "66.162.110.1",
+    "hostname": "sth1-cr1",
+    "timestamp": "2026-11-04T08:51:45.415203Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
+  },
+  {
+    "event_id": "c91c8fbd-543c-4d12-bcea-07dc80dd47d3",
+    "mgmt_ip": "66.162.110.2",
+    "hostname": "sth1-cr2",
+    "timestamp": "2026-11-04T08:51:59.604972Z",
+    "action": "current_config_read_hierarchical",
+    "message": "SSH hierarchical config collected via Netmiko (juniper_junos) using 'show configuration | no-more'."
   }
 ]

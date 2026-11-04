@@ -1,0 +1,190 @@
+NMS_APP - Complete Start/Stop Procedure (Beginner Friendly)
+=============================================================
+This file lists every step in order, including exactly what to type
+in the terminal (bash) and what you should see as a result.
+
+There are TWO parts to this app:
+  1) Backend API  -> runs on port 8788
+  2) Frontend UI  -> runs on port 8091
+Both must be running at the same time to use the app in a browser.
+
+IMPORTANT NOTE ABOUT RUNNING SCRIPTS:
+Always type "bash run_backend.sh ..." (with the word "bash" in front).
+Typing just "run_backend.sh start" WITHOUT "bash" in front will fail with:
+    bash: run_backend.sh: command not found
+This is normal Linux behavior (current folder is not in $PATH). Always
+use the full command exactly as written below, e.g.:
+    bash run_backend.sh start
+
+
+====================================================
+STEP 0: Open a terminal (bash)
+====================================================
+- Open VS Code.
+- Open a terminal: Menu > Terminal > New Terminal
+  (or press Ctrl + ` backtick key)
+- You should see a prompt like:
+      [username@machine NMS_APP]$
+- This is "bash". Every command below is typed here, then press Enter.
+
+
+====================================================
+STEP 1: Go to the project folder
+====================================================
+Type:
+    cd /home/ad39013/NMS_APP
+
+Press Enter. Your prompt should now show you are inside NMS_APP.
+
+
+====================================================
+STEP 2: Start the Backend API
+====================================================
+Type:
+    cd /home/ad39013/NMS_APP/backend
+    bash run_backend.sh start
+
+Expected output:
+    Backend started on http://127.0.0.1:8788 (pid <some number>).
+
+If you instead see:
+    Backend already running (pid <number>).
+-> that means it is already running, no action needed.
+
+
+--- Check backend is healthy (do this every time, before using the app) ---
+Type:
+    curl http://127.0.0.1:8788/api/health
+
+Expected output:
+    {"status":"ok","service":"nms-inventory-api"}
+
+If you do NOT see "ok", run:
+    bash run_backend.sh logs
+and read the last lines to see the error.
+
+
+====================================================
+STEP 3: Start the Frontend (website) server
+====================================================
+You can use the SAME terminal as Step 2 (no need to open a new one).
+Type these 3 lines one by one, pressing Enter after each:
+
+    cd /home/ad39013/NMS_APP/frontend
+    fuser -k 8091/tcp
+    python3 -m http.server 8091 --bind 127.0.0.1 > /tmp/nms_frontend.log 2>&1 &
+
+Notes on each line:
+  Line 1: go into the frontend folder.
+  Line 2: free port 8091 in case an old server is still using it.
+          (It is safe to run even if nothing is using the port - it
+          will just print a harmless message like "fuser: no process
+          found" or nothing at all.)
+  Line 3: start the frontend server. The "&" at the end runs it in the
+          background so you immediately get your prompt back. You will
+          see a line like "[1] 12345" (12345 is the process ID) -
+          that is normal, not an error.
+
+(Optional) If you want the server to keep running even after closing
+this terminal window, also type:
+    disown
+
+
+--- Check frontend is working ---
+Type:
+    curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1:8091/index.html
+
+Expected output:
+    200
+
+(200 means OK. Anything else, or "000", means it is not running - go
+back and repeat Step 3.)
+
+
+====================================================
+STEP 4: Open the Application in a Browser
+====================================================
+This part is NOT a terminal command. Open your web BROWSER
+(Chrome/Firefox/Edge) and go to this address bar (not bash):
+
+    http://127.0.0.1:8091
+
+Backend health check page (optional, for confirming backend only):
+    http://127.0.0.1:8788/api/health
+
+If the page looks outdated after a code update, do a hard refresh in
+the browser: Ctrl + Shift + R
+
+
+====================================================
+STEP 5: Everyday Use - Quick Status Check
+====================================================
+Whenever you reopen your laptop/terminal and want to check if things
+are still running, type:
+
+    bash /home/ad39013/NMS_APP/backend/run_backend.sh status
+    curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1:8091/index.html
+
+- Backend status should say "Backend running (pid ...)".
+- Frontend check should print 200.
+
+If either one is not running / not 200, repeat Step 2 or Step 3
+for that part only.
+
+
+====================================================
+STEP 6: Stopping the App (when you are done)
+====================================================
+Stop Backend:
+    bash /home/ad39013/NMS_APP/backend/run_backend.sh stop
+
+Stop Frontend:
+    fuser -k 8091/tcp
+
+(If you ran the frontend in the foreground instead of background,
+just press Ctrl + C in that terminal window instead.)
+
+
+====================================================
+STEP 7: Restarting After a Code Change
+====================================================
+If a developer/AI updates the backend or frontend code, restart with:
+
+    bash /home/ad39013/NMS_APP/backend/run_backend.sh restart
+    fuser -k 8091/tcp
+    cd /home/ad39013/NMS_APP/frontend
+    python3 -m http.server 8091 --bind 127.0.0.1 > /tmp/nms_frontend.log 2>&1 &
+    disown
+
+Then in the browser, do a hard refresh: Ctrl + Shift + R
+
+
+====================================================
+Quick Reference (copy-paste block)
+====================================================
+# Start everything
+bash /home/ad39013/NMS_APP/backend/run_backend.sh start
+fuser -k 8091/tcp
+cd /home/ad39013/NMS_APP/frontend && python3 -m http.server 8091 --bind 127.0.0.1 > /tmp/nms_frontend.log 2>&1 & disown
+
+# Check everything
+curl http://127.0.0.1:8788/api/health
+curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1:8091/index.html
+
+# Stop everything
+bash /home/ad39013/NMS_APP/backend/run_backend.sh stop
+fuser -k 8091/tcp
+
+# Open in browser (type this URL in your BROWSER, not terminal)
+http://127.0.0.1:8091
+
+
+
+
+
+
+
+bash /home/ad39013/NMS_APP/backend/run_backend.sh start
+cd /home/ad39013/NMS_APP/frontend
+fuser -k 8091/tcp
+python3 -m http.server 8091 --bind 127.0.0.1 > /tmp/nms_frontend.log 2>&1 &

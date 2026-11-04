@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NMS App Shell</title>
+  <title>Test Info NMS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -15,9 +15,9 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Primary Navigation">
       <div class="brand-wrap">
-        <div class="brand-mark">NV</div>
+        <div class="brand-mark">TI</div>
         <div>
-          <p class="brand-title">NetVista NMS</p>
+          <p class="brand-title">Test Info NMS</p>
           <p class="brand-subtitle">Operations Core</p>
         </div>
       </div>
@@ -72,19 +72,19 @@
 
           <div class="dashboard-kpi-grid" id="dashboard-kpi-grid">
             <article class="dashboard-kpi-card">
-              <span>Total Devices</span>
+              <span>Total IPs Scanned</span>
               <strong id="dash-total-devices">--</strong>
             </article>
             <article class="dashboard-kpi-card">
-              <span>Healthy</span>
+              <span>Active Devices (SSH/NETCONF OK)</span>
               <strong id="dash-healthy-devices">--</strong>
             </article>
             <article class="dashboard-kpi-card">
-              <span>Fetch Failed</span>
+              <span>Free / No-Response IPs</span>
               <strong id="dash-failed-devices">--</strong>
             </article>
             <article class="dashboard-kpi-card">
-              <span>Vendors</span>
+              <span>Identified Vendors</span>
               <strong id="dash-vendor-count">--</strong>
             </article>
           </div>
@@ -108,7 +108,7 @@
             <section class="dashboard-panel">
               <h3>NOC Notes</h3>
               <ul class="dashboard-list dashboard-list-static">
-                <li>Review devices marked Fetch Failed and confirm credentials.</li>
+                <li>Free/No-Response IPs may be unused addresses in the subnet, not necessarily device failures - verify before raising an incident.</li>
                 <li>Validate LLDP topology reachability for critical nodes.</li>
                 <li>Run refresh before shift handover export.</li>
               </ul>
@@ -219,6 +219,6 @@
     </main>
   </div>
 
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=1793772079"></script>
 </body>
 </html>
