@@ -1,0 +1,37 @@
+Test Info NMS - Steps for Teammate to Open the App
+====================================================
+You do NOT need to install anything, clone any code, or use a
+terminal. Just follow these steps:
+
+STEP 1: Connect to the same network
+-------------------------------------
+Make sure you are connected to the same company network or VPN as
+the host machine "zuni-dev-01" (ask the sender if you are unsure
+which VPN/network to connect to).
+
+STEP 2: Open the link in your browser
+----------------------------------------
+Open any web browser (Chrome, Firefox, Edge) and go to:
+
+    http://10.237.67.2:8091
+
+STEP 3: Use the app
+----------------------
+You should see the "Test Info NMS" dashboard load automatically with
+live data (Dashboard, Inventory, Device Details, Device Config, etc.)
+Just click around the left-side menu to explore.
+
+If the page does not load:
+-----------------------------
+1. Double check you are on the correct network/VPN (Step 1).
+2. Try a hard refresh: Ctrl + Shift + R
+3. Contact the sender - a firewall port may need to be opened on
+   their end, or the app may not currently be running.
+
+Notes:
+--------
+- This link only works while the sender's app is running on their
+  machine. If the sender restarts their computer or stops the app,
+  the link will stop working until they start it again.
+- You are viewing the live running app directly - there is nothing to
+  download, install, or set up on your side.
