@@ -5,13 +5,11 @@ terminal. Just follow these steps:
 
 STEP 1: Connect to the company VPN
 -------------------------------------
-Make sure you are connected to the company VPN - the same VPN used
-to reach the jump server "zunidev" (zuni-dev-01). This jump server is
-the machine actually running the app, at internal IP 10.237.67.2.
+Make sure you are connected to the company VPN: roc.centurylink.com
+This is the same VPN used to reach the jump server "zunidev"
+(zuni-dev-01), the machine actually running the app, at internal IP
+10.237.67.2.
 
-If you are not sure which VPN to use, ask the sender - it must be the
-VPN/network that gives you routed access to the zunidev jump server's
-internal IP range, not just SSH/RDP access to the jump server itself.
 (Some VPN setups only allow SSH-style jump access and do not route
 general HTTP traffic to the jump server's IP - if step 2 fails, this
 is the most likely reason. See the troubleshooting note below.)
