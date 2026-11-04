@@ -6,19 +6,15 @@ terminal. Just follow these steps:
 STEP 1: Connect to the company VPN
 -------------------------------------
 Make sure you are connected to the company VPN: roc.centurylink.com
-This is the same VPN used to reach the jump server "zunidev"
-(zuni-dev-01), the machine actually running the app, at internal IP
-10.237.67.2.
-
-(Some VPN setups only allow SSH-style jump access and do not route
-general HTTP traffic to the jump server's IP - if step 2 fails, this
-is the most likely reason. See the troubleshooting note below.)
 
 STEP 2: Open the link in your browser
 ----------------------------------------
 Open any web browser (Chrome, Firefox, Edge) and go to:
 
     http://10.237.67.2:8091
+
+(10.237.67.2 is "zunidev" - the development server where the app is
+running.)
 
 STEP 3: Use the app
 ----------------------
@@ -28,22 +24,19 @@ Just click around the left-side menu to explore.
 
 If the page does not load:
 -----------------------------
-1. Double check you are on the company VPN (Step 1).
+1. Double check you are connected to the roc.centurylink.com VPN.
 2. Try a hard refresh: Ctrl + Shift + R
-3. If your VPN only lets you SSH/RDP into zunidev as a jump server
-   (common setup) rather than routing general web traffic to it, a
-   direct http://10.237.67.2:8091 link will NOT work for you even
-   though you are "connected". Use the SSH tunnel method below instead.
-4. Contact the sender - a firewall port may need to be opened on
-   their end, or the app may not currently be running.
+3. Contact the sender - a firewall port may need to be opened on
+   their end, the app may not currently be running, or your VPN
+   profile may not route traffic to 10.237.67.2 for your account
+   (ask network/IT to confirm access to that server).
 
 
-FALLBACK METHOD: SSH Tunnel (use if the direct link in Step 2 fails)
+FALLBACK METHOD: SSH Tunnel (use only if Step 2 still does not work)
 =======================================================================
-If you have SSH access to the zunidev jump server (ask the sender for
-your username on that machine if you do not already have one), you
-can reach the app through an SSH tunnel instead of a direct IP link.
-This works even if your VPN only allows SSH-style jump access.
+If you have SSH access to the zunidev server (ask the sender for your
+username on that machine if you do not already have one), you can
+reach the app through an SSH tunnel instead of a direct IP link.
 
 1. Open a terminal on your own computer (not on zunidev) and run:
 
@@ -56,9 +49,7 @@ This works even if your VPN only allows SSH-style jump access.
 
     http://127.0.0.1:8091
 
-   This now shows the same live app, tunneled securely through the
-   jump server, without needing the app's network traffic to be
-   routed directly to you.
+   This shows the same live app, tunneled through zunidev.
 
 Notes:
 --------
