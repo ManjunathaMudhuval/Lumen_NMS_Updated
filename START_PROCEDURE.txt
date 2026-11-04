@@ -69,6 +69,25 @@ If the page looks outdated after a code update, do a hard refresh in
 the browser: Ctrl + Shift + R
 
 
+--- Sharing with a teammate (no code pulling needed) ---
+The app now listens on all network interfaces (0.0.0.0), so a teammate
+on the SAME corporate network/VPN as this machine can open it directly
+in their own browser using this machine's network IP instead of
+127.0.0.1:
+
+    http://10.237.67.2:8091
+
+Requirements:
+  - Teammate must be on the same network/VPN as this machine
+    (hostname: zuni-dev-01).
+  - Port 8091 must not be blocked by a firewall in between. If they
+    cannot connect, an admin may need to run on this machine:
+        sudo firewall-cmd --add-port=8091/tcp --permanent
+        sudo firewall-cmd --reload
+  - This shares the live running app only - it does not give them any
+    code, files, or terminal access.
+
+
 ====================================================
 STEP 3: Everyday Use - Quick Status Check
 ====================================================

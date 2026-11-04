@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
-HOST="127.0.0.1"
+HOST="0.0.0.0"
 PORT="8091"
 PID_FILE="$ROOT_DIR/.uvicorn.pid"
 LOG_FILE="/tmp/nms_uvicorn.log"
