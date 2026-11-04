@@ -1,5 +1,7 @@
 (() => {
-  const API_BASE = 'http://127.0.0.1:8788';
+  // Relative base: works whether frontend+API are served from the same
+  // origin (recommended) or http://127.0.0.1:8788 directly.
+  const API_BASE = '';
   const navItems = document.querySelectorAll('.nav-item');
   const panels = document.querySelectorAll('[data-view-panel]');
   const subtitle = document.getElementById('view-subtitle');

@@ -47,21 +47,17 @@ For detailed tasks and exit criteria, follow docs/MASTER_DEVELOPMENT_PLAN.md.
 5. Push stream API: WebSocket /api/ws/inventory/netconf-yang.
 
 ## Run (Phase 2)
-Backend API:
+The backend now also serves the frontend static files on the same port, so
+only ONE port needs to be reachable/forwarded.
 
 ```bash
 cd /home/ad39013/NMS_APP/backend
 /home/ad39013/.asdf/shims/python3 -m pip install -r requirements.txt
-/home/ad39013/.asdf/shims/python3 -m uvicorn api.main:app --host 0.0.0.0 --port 8788
-```
-
-Frontend:
-
-```bash
-cd /home/ad39013/NMS_APP/frontend
-python3 -m http.server 8091
+bash run_backend.sh start
 ```
 
 Open:
-1. Frontend: http://127.0.0.1:8091
-2. Backend health: http://127.0.0.1:8788/api/health
+1. App (frontend + API): http://127.0.0.1:8091
+2. Backend health: http://127.0.0.1:8091/api/health
+
+(A separate `python3 -m http.server` for the frontend is no longer required.)

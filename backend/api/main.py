@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 
 from fastapi import FastAPI, HTTPException, Query, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 TEST_SUBNET = "66.162.110.0/24"
@@ -2797,3 +2798,12 @@ def discover_mock() -> ActionResponse:
         status_code=410,
         detail="Mock discovery is disabled in strict real-time mode. Use /api/inventory/netconf-yang-snapshot.",
     )
+
+
+# Serve the frontend from the same port as the API so only one port needs to
+# be reachable/forwarded (avoids cross-port access issues in remote/dev
+# environments). All API routes are registered above under /api, so mounting
+# static files at "/" here does not shadow any API endpoint.
+FRONTEND_DIR = PROJECT_ROOT / "frontend"
+if FRONTEND_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
